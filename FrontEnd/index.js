@@ -76,7 +76,9 @@ async function filterCategories() {
                             createWorks(work);
                         });
                     } else {
-                        displayWorks();
+                        allWorks.forEach((work) => {
+                            createWorks(work);
+                        });
                     }
                 } catch (error) {
                     console.error("Error during filtering:", error);
