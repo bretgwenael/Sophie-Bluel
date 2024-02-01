@@ -231,3 +231,27 @@ footer nav ul {
 	margin: 2em
 }
 
+*:focus {
+box-shadow: 0 0 10px blue;
+}
+
+.modal {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 34.2%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-wrapper {
+	position: fixed;
+	overflow: auto;
+	width: 600px;
+	height: 600px;
+	max-width: calc(100vw -20px);
+	max-height: calc(100vh - 20px);
+	background-color: #fff;
+	border-radius: 10px;
+}

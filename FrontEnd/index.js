@@ -115,6 +115,7 @@ var innerDiv2 = document.createElement("div");
 innerDiv2.classList.add('Div2');
 
 var a = document.createElement("a");
+a.href = "#modal";
 var i = document.createElement("i");
 i.classList.add('fa-regular', 'fa-pen-to-square');
 var p = document.createElement("p");
@@ -139,13 +140,7 @@ existingSection.insertBefore(outerDiv, existingSection.querySelector('.filters')
   }
   
   adminMode();
-//restructuration mes projets
 
 
-  /*const projectsDiv = document.querySelector('#portfolio h2');
-    const newDiv = document.createElement('div');
-    newDiv.className = 'ProjectsDiv';
-    newDiv.appendChild(projectsDiv);
-    const filtersDiv = document.querySelector('.filters');
-    filtersDiv.parentNode.insertBefore(newDiv, filtersDiv); */
-    //ajout modifier
+  //modal
+
