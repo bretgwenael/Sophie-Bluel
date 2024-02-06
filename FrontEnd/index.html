@@ -12,10 +12,19 @@
 	<script src="https://kit.fontawesome.com/5fcbfd7080.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<aside id="#modal" class="modal" aria-hidden="true" role="modal" aria-labelledby="titlemodal" style="display: none;">
-		<div class="modal-wrapper js-modal-stop">
-			<button class="js-modal-close">fermer la boite modale</button>
-			<h1 id="titlemodal">Galerie Photo</h1>
+	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display: none;">
+		<div class="modal-wrapper">
+			<div class="headermodal">
+				<button class="js-modal-close">X</button>
+			</div>
+			<div class="modalcontent">
+			<h1 id="title-modal">Galerie photo</h1>
+			<div class="gallery2">
+				<!-- Dynamic content -->
+			</div>
+			<div class="underlineGallery"></div>
+			<button class="btnAddPicture">Ajouter une photo</button>
+		</div>
 		</div>
 	</aside>
 <header>
@@ -42,7 +51,17 @@
 		</article>
 	</section>
 	<section id="portfolio">
-				<h2>Mes Projets</h2>
+		<div class="outer">
+			<div class="Div1">
+				<h2>Mes projets</h2>
+			</div>
+			<div class="Div2" style="display: none;">
+				<a href="#modal1" class="js-modal">
+					<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
+					<p>modifier</p>
+				</a>
+			</div>
+		</div>
 		<div class="filters">
 			<button id="0">Tous</button>
 			<!-- Dynamic content -->

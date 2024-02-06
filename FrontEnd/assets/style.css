@@ -231,27 +231,85 @@ footer nav ul {
 	margin: 2em
 }
 
-*:focus {
-box-shadow: 0 0 10px blue;
-}
-
 .modal {
 	position: fixed;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 34.2%;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-wrapper {
-	position: fixed;
-	overflow: auto;
-	width: 600px;
-	height: 600px;
-	max-width: calc(100vw -20px);
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	width: 630px;
+	height: 688px;
+	padding: 20px;
+	max-width: calc(100vw - 20px);
 	max-height: calc(100vh - 20px);
-	background-color: #fff;
+	overflow: auto;
 	border-radius: 10px;
+}
+
+.headermodal {
+	position: relative;
+	width: 100%;
+	height: 10%;
+}
+
+.headermodal button {
+	position: absolute;
+	right: 0;
+	border: none;
+}
+
+.modalcontent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-left: 15%;
+	padding-right: 15%;
+	height: 100%;
+}
+
+
+.gallery2 {
+	margin-top: 60px;
+	height: 75%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+}
+
+.underlineGallery {
+	width: 100%;
+	border: 1px solid #B3B3B3;
+	margin-bottom: 30px ;
+	
+}
+
+
+.gallery2 img {
+	width: 100%;
+}
+
+.workGallery {
+	position: relative;
+}
+
+.workGallery i {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	color: white;
+	background-color: black;
+	padding: 5px;
+	border-radius: 4px;
 }
