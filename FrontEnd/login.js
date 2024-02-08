@@ -1,9 +1,9 @@
-const formEl = document.querySelector('form');
+const formLog = document.getElementById('formLogin');
 
-formEl.addEventListener('submit', event => {
+formLog.addEventListener('submit', event => {
 event.preventDefault();
 
-const formData = new FormData(formEl);
+const formData = new FormData(formLog);
 const data = Object.fromEntries(formData);
 
 console.log(FormData);
@@ -15,8 +15,7 @@ fetch('http://localhost:5678/api/users/login', {
     },
     body: JSON.stringify(data)
 }).then(res => {
-    if (res.ok) {
-        // Status code 200-299 indique une réponse réussie
+    if (res.status === 200) {
         return res.json();
     } else {
         // Status code 400 ou 401

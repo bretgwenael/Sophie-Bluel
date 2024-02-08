@@ -13,18 +13,47 @@
 </head>
 <body>
 	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display: none;">
-		<div class="modal-wrapper">
-			<div class="headermodal">
+		<div class="modal-wrapper1">
+			<div class="headermodal1">
 				<button class="js-modal-close">X</button>
 			</div>
-			<div class="modalcontent">
-			<h1 id="title-modal">Galerie photo</h1>
+			<div class="modalcontent1">
+			<h3 id="title-modal">Galerie photo</h1>
 			<div class="gallery2">
 				<!-- Dynamic content -->
 			</div>
 			<div class="underlineGallery"></div>
-			<button class="btnAddPicture">Ajouter une photo</button>
+				<button class="btnAddPicture">Ajouter une photo</button>
+			</div>
 		</div>
+		<div class="modal-wrapper2" style="display: none;">
+			<div class="headermodal2">
+				<a href="#modal1"><i class="fa-solid fa-arrow-left"></i></a>
+				<button class="js-modal-close">X</button>
+			</div>
+			<div class="modalcontent2">
+				<h3 id="title-modal">Ajout photo</h1>
+				<form action="#" id="formAddPicture">
+					<div class="addPhoto">
+						<img src="./assets/images/picture-svgrepo-com 1.png" alt="logo image neutre">
+						<label for="addPicture" id="addPictureBtn">+ Ajouter photo</label>
+						<input type="file" class= "addPicture" name="addPicture" id="addPicture" accept="image/png, image/jpeg" style="visibility: hidden;">
+						<p>jpg, png : 4mo max</p>
+					</div>
+					<div class="picturePreview" style="display: none;">
+							
+					</div>
+					<div class="inputs">
+					<label for="title">Titre</label>
+					<input type="text" name="title" id="title">
+					<label for="selectCategories">Categories</label>
+					<select name="selectCategories" id="selectCategories"></select>
+				</div>
+				<div class="underlineGallery"></div>
+				<input type="submit" value="Valider">
+				</form>	
+			</div>
+			</div>
 		</div>
 	</aside>
 <header>

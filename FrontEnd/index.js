@@ -3,6 +3,7 @@
 const gallery = document.querySelector(".gallery");
 const gallery2 = document.querySelector(".gallery2");
 const filters = document.querySelector(".filters");
+const select = document.getElementById("selectCategories");
 
 //fonction recuperer works depuis API
 
@@ -34,17 +35,61 @@ function createWorks(work) {
         gallery.appendChild(figure);
     };
 
+    //fonction creer gallery modale
     function createModalWorks(work) {
         const img = document.createElement("img");
         img.src = work.imageUrl;
         const icon = document.createElement("i");
+        icon.id = work.id;
         icon.className = "fa-solid fa-trash-can";
+        icon.addEventListener("click", function(e) {
+            e.preventDefault();
+            deleteWork(work.id);
+        })
         const container = document.createElement("div");
         container.className = "workGallery";
         container.appendChild(img);
         container.appendChild(icon);
         gallery2.appendChild(container);
     }
+
+    //fonction supprimer projet
+    async function deleteWork(workId) {
+        try {
+            const token = sessionStorage.getItem("token");
+    
+            if (!token) {
+                console.error("No token found. User is not authenticated.");
+                return;
+            }
+    
+            const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+                
+            });
+    
+            if (response.ok) {
+                // Le travail a été supprimé avec succès
+                console.log(`Work with ID ${workId} deleted successfully.`);
+                // Vous pouvez également mettre à jour votre interface utilisateur pour refléter la suppression, si nécessaire
+                const iconToDelete = document.getElementById(workId);
+            if (iconToDelete) {
+                iconToDelete.parentElement.remove();
+            }
+            } else {
+                // Il y a eu un problème lors de la suppression du travail
+                console.error(`Failed to delete work with ID ${workId}.`);
+            }
+        } catch (error) {
+            // Une erreur s'est produite lors de la requête
+            console.error('Error deleting work:', error);
+        }
+    }
+
 
 //fonction recuperer categories depuis API
 
@@ -67,6 +112,19 @@ async function displayCategoriesButtons() {
 
 }
 displayCategoriesButtons();
+
+//fonction options selon categories
+
+async function displayCategoriesOptions() {
+    const categories = await getCategories();
+    categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.textContent = category.name;
+        option.id = category.id;
+        select.appendChild(option);
+    });
+}
+displayCategoriesOptions();
 
 //Filtrage au clique sur les boutons
 
@@ -119,6 +177,77 @@ function adminMode() {
     document.querySelector(".Div2").style.display = null;
     }
   }
-  
   adminMode();
 
+  //Sortir admin mode
+  function exitAdminMode() {
+    const token = sessionStorage.getItem("token"); 
+    if(token) {
+    const logout = document.getElementById("logBtn");
+    logout.addEventListener("click", function(e) {
+        e.preventDefault();
+        sessionStorage.removeItem("token");
+        document.querySelector(".filters").style.display = null;
+        document.getElementById("logBtn").innerText = "Login";
+        document.querySelector(".Div2").style.display = "none";
+        window.location.replace("index.html")
+    });
+  }
+}
+  exitAdminMode();
+
+//click bouton ajout photo
+
+function addPictureForm() {
+    const addPictureInput = document.getElementById("addPicture");
+    const addPhotoDiv = document.querySelector(".addPhoto");
+    const picturePreviewDiv = document.querySelector(".picturePreview");
+
+    addPictureInput.addEventListener("change", function(e) {
+        e.preventDefault();
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const img = document.createElement("img");
+            img.src = event.target.result;
+            picturePreviewDiv.innerHTML = "";
+            picturePreviewDiv.appendChild(img);
+            addPhotoDiv.style.display = 'none';
+            picturePreviewDiv.style.display = null;
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    const previewPictureBtn = document.getElementById("addPictureBtn");
+    previewPictureBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        addPictureInput.click();
+    });
+}
+
+addPictureForm();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const formAddPicture = document.getElementById("formAddPicture");
+
+    if (formAddPicture) { // Vérifie si l'élément formAddPicture est bien sélectionné
+        formAddPicture.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const formData = new FormData(formAddPicture);
+
+            // Créez un objet à partir des données du formulaire
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            console.log(data);
+        });
+    } else {
+        console.error("L'élément formAddPicture n'a pas été trouvé.");
+    }
+});

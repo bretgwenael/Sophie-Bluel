@@ -18,14 +18,36 @@ const openModal = function (e) {
 
 
 const closeModal = function (e) {
-    e.preventDefault()
+    e.preventDefault();
     modal.style.display = 'none'
-    modal.setAttribute('aria-hidden', 'true')
-    modal.removeAttribute('aria-modal')
-    modal.removeEventListener('click', closeModal)
-    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
+    modal.setAttribute('aria-hidden', 'true');
+    modal.removeAttribute('aria-modal');
+    modal.querySelectorAll('.js-modal-close').forEach(element => {
+        element.removeEventListener('click', closeModal);
+    });
     modal = null
+    window.location.reload("index.html");
 }
+
+function previousModal() {
+    const leftArrow = document.querySelector('.fa-solid.fa-arrow-left');
+    leftArrow.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(".modal-wrapper2").style.display = 'none';
+        document.querySelector(".modal-wrapper1").style.display = null;
+    });
+    }
+    previousModal();
+
+    function addPictureModal () {
+        const addPictureBtn = document.querySelector('.btnAddPicture');
+        addPictureBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(".modal-wrapper2").style.display = null;
+            document.querySelector(".modal-wrapper1").style.display = 'none';
+        });
+    }
+    addPictureModal();
 
 window.onclick = function(event) {
     if(event.target === modal) {
@@ -35,4 +57,8 @@ window.onclick = function(event) {
 
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click', openModal)
+})
+
+document.querySelectorAll('.js-modal-close').forEach(a => {
+    a.addEventListener('click', closeModal)
 })

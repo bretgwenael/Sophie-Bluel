@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -75,7 +76,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -84,6 +84,19 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+
+h3 {
+	font-family: 'Work Sans';
+	font-size: 26px;
+}
+
+h4 {
+	font-family: 'Work Sans';
+	font-size: 14px;
+	text-decoration: underline;
+	text-align: center;
+}
+
 nav ul {
 	display: flex;
 	align-items: center;
@@ -101,6 +114,7 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	padding-bottom: 40px;
 }
 #introduction figure {
 	flex: 1
@@ -121,15 +135,19 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+
 }
 
 .outer {
 	display: flex;
 	justify-content: center;
 	gap: 20px;
+	padding-top: 40px;
+	padding-bottom: 100px;
 }
 
 .Div2 a {
@@ -157,7 +175,7 @@ li:hover {
 	display: flex;
 	justify-content: center;
 	gap: 10px;
-	margin: 5em auto;
+	margin: 4em auto;
 }
 
 button {
@@ -173,15 +191,17 @@ border: 1px solid #1D6154;
 
 #contact {
 	width: 50%;
-margin: auto;
+ 	margin: auto;
+	padding-top: 100px;
 }
 #contact > * {
 	text-align: center;
-
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -243,7 +263,7 @@ footer nav ul {
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.modal-wrapper {
+.modal-wrapper1 {
 	display: flex;
 	flex-direction: column;
 	background: #fff;
@@ -256,19 +276,19 @@ footer nav ul {
 	border-radius: 10px;
 }
 
-.headermodal {
+.headermodal1 {
 	position: relative;
 	width: 100%;
 	height: 10%;
 }
 
-.headermodal button {
+.headermodal1 button {
 	position: absolute;
 	right: 0;
 	border: none;
 }
 
-.modalcontent {
+.modalcontent1 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -277,10 +297,22 @@ footer nav ul {
 	height: 100%;
 }
 
+.btnAddPicture {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	color: white;
+	background-color: #1D6154;
+	width: 250px;
+	text-align: center;
+	border-radius: 60px;
+	margin-top: 10px;
+}
+
 
 .gallery2 {
 	margin-top: 60px;
-	height: 75%;
+	height: 70%;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -313,3 +345,131 @@ footer nav ul {
 	padding: 5px;
 	border-radius: 4px;
 }
+
+.modal-wrapper2 {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	width: 630px;
+	height: 688px;
+	padding: 20px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+	overflow: auto;
+	border-radius: 10px;
+}
+
+.headermodal2 {
+	position: relative;
+	width: 100%;
+	height: 10%;
+}
+
+.headermodal2 button {
+	position: absolute;
+	right: 0;
+	padding: 0;
+	font-size: 25px;
+	border: none;
+}
+
+.headermodal2 a {
+	position: absolute;
+	left: 0;
+	font-size: 25px;
+}
+
+.modalcontent2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-left: 15%;
+	padding-right: 15%;
+	height: 100%;
+}
+
+#formAddPicture {
+	display: flex;
+	flex-direction: column;
+	height: 90%;
+}
+
+.addPhoto {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 420px;
+	background: rgb(221, 239, 245);
+	height: 35%;
+	margin-top: 30px;
+	border-radius: 4px;
+}
+
+.addPhoto label{
+	position: relative;
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 10px 30px;
+	color: rgb(64, 119, 222);
+	background: #E8F1F6;
+	;
+}
+
+.addPhoto input{
+	position: absolute;
+}
+
+.addPhoto p {
+font-size: 10px;
+}
+
+.inputs {
+	display: flex;
+	flex-direction: column;
+	height: 40%;
+}
+
+.inputs input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.inputs label {
+	margin: 2em 0 1em 0;
+}
+.inputs textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.inputs select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border-right: 10px solid #fff;
+}
+
+.picturePreview {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 420px;
+	background: rgb(221, 239, 245);
+	height: 40%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+}
+
+.picturePreview img{
+	width: 31%;
+	height: 100%;
+	object-fit: fill;
+}
+
+
