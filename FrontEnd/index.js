@@ -30,6 +30,9 @@ function createWorks(work) {
         const figcaption = document.createElement("figcaption");
         img.src = work.imageUrl;
         figcaption.textContent = work.title;
+
+        figure.dataset.id = work.id;
+
         figure.appendChild(img);
         figure.appendChild(figcaption);
         gallery.appendChild(figure);
@@ -79,6 +82,9 @@ function createWorks(work) {
                 const iconToDelete = document.getElementById(workId);
             if (iconToDelete) {
                 iconToDelete.parentElement.remove();
+
+                const workInHomePage = document.querySelector(`[data-id='${token}']`)
+                workInHomePage.remove();
             }
             } else {
                 // Il y a eu un problème lors de la suppression du travail
@@ -121,6 +127,7 @@ async function displayCategoriesOptions() {
         const option = document.createElement("option");
         option.textContent = category.name;
         option.id = category.id;
+        option.value = category.id;
         select.appendChild(option);
     });
 }
@@ -190,7 +197,8 @@ function adminMode() {
         document.querySelector(".filters").style.display = null;
         document.getElementById("logBtn").innerText = "Login";
         document.querySelector(".Div2").style.display = "none";
-        window.location.replace("index.html")
+        window.location.replace("index.html");
+        filterCategories();
     });
   }
 }
@@ -226,28 +234,51 @@ function addPictureForm() {
         addPictureInput.click();
     });
 }
-
 addPictureForm();
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const formAddPicture = document.getElementById("formAddPicture");
+const test = document.querySelector('#formAddPicture')
 
-    if (formAddPicture) { // Vérifie si l'élément formAddPicture est bien sélectionné
-        formAddPicture.addEventListener("submit", event => {
-            event.preventDefault();
+test.addEventListener('submit', (e) => {
+    console.log(e);
+    e.preventDefault()
 
-            const formData = new FormData(formAddPicture);
+    const formData = new FormData();
+    formData.append("title", e.target.title.value);
+    formData.append("category", parseInt(e.target.selectCategories.value));
+    formData.append("image", e.target.addPicture.files[0]);
 
-            // Créez un objet à partir des données du formulaire
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+    const token = sessionStorage.getItem("token");
 
-            console.log(data);
-        });
-    } else {
-        console.error("L'élément formAddPicture n'a pas été trouvé.");
-    }
+    fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+    })
+    .then((response) => {
+        if (response.status === 201) {
+            formAddPicture.reset();
+            const picturePreviewDiv = document.querySelector(".picturePreview");
+            picturePreviewDiv.innerHTML = "";
+            const addPhotoDiv = document.querySelector(".addPhoto");
+            addPhotoDiv.style.display = null;
+            picturePreviewDiv.style.display = 'none';
+            gallery.innerHTML = "";
+            gallery2.innerHTML = "";
+            displayWorks();
+
+            return false;
+        }else if (response === 400) {
+            return false;
+        }else if (response === 500) {
+            return false;
+        }else if (response === 401) {
+            window.location.href = "login.html"
+        }
+    })
+    .catch((error) => {
+        console.error("Eroor adding projects:", error);
+    });
 });
