@@ -19,7 +19,7 @@ const openModal = function (e) {
 
 const closeModal = function (e) {
     e.preventDefault();
-    modal.style.display = 'none'
+    modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     modal.removeAttribute('aria-modal');
     modal.querySelectorAll('.js-modal-close').forEach(element => {
@@ -52,6 +52,7 @@ function previousModal() {
 window.onclick = function(event) {
     if(event.target === modal) {
         modal.style.display = 'none';
+        window.location.reload("index.html");
     }
 }
 

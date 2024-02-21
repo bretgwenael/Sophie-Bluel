@@ -122,6 +122,10 @@ displayCategoriesButtons();
 //fonction options selon categories
 
 async function displayCategoriesOptions() {
+    const emptyOption = document.createElement("option");
+    emptyOption.textContent = "";
+    emptyOption.value = "";
+    select.appendChild(emptyOption);
     const categories = await getCategories();
     categories.forEach((category) => {
         const option = document.createElement("option");
@@ -182,6 +186,7 @@ function adminMode() {
       document.getElementById("logBtn").innerText = "Logout";
     // affichage modifier
     document.querySelector(".Div2").style.display = null;
+    document.querySelector(".edition-mode").style.display = null;
     }
   }
   adminMode();
@@ -265,6 +270,8 @@ test.addEventListener('submit', (e) => {
             const addPhotoDiv = document.querySelector(".addPhoto");
             addPhotoDiv.style.display = null;
             picturePreviewDiv.style.display = 'none';
+            const formSubmitButton = document.querySelector(".formSubmit");
+            formSubmitButton.style.backgroundColor = "";
             gallery.innerHTML = "";
             gallery2.innerHTML = "";
             displayWorks();
@@ -282,3 +289,24 @@ test.addEventListener('submit', (e) => {
         console.error("Eroor adding projects:", error);
     });
 });
+
+
+
+    
+const addPictureInput = document.getElementById("addPicture");
+const titleInput = document.getElementById("title");
+const selectCategoriesInput = document.getElementById("selectCategories");
+const formSubmitButton = document.querySelector(".formSubmit");
+
+addPictureInput.addEventListener("change", checkInputs);
+titleInput.addEventListener("change", checkInputs);
+selectCategoriesInput.addEventListener("change", checkInputs);
+
+
+function checkInputs() {
+    
+    if (addPictureInput.value !== "" && titleInput.value !== "" && selectCategoriesInput.value !== "") {
+        
+        formSubmitButton.style.backgroundColor = "#1D6154";
+    }
+}
