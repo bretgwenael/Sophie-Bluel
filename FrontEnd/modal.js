@@ -3,10 +3,8 @@
 const openModal = function (e) {
     e.preventDefault();
     
-    // Vérifier si la cible est une ancre avec la classe .js-modal
     const target = e.target.closest('.js-modal');
     
-    // Vérifier si target est null
     
         const modalId = target.getAttribute('href');
         modal = document.querySelector(modalId);

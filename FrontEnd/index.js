@@ -76,9 +76,9 @@ function createWorks(work) {
             });
     
             if (response.ok) {
-                // Le travail a été supprimé avec succès
+                
                 console.log(`Work with ID ${workId} deleted successfully.`);
-                // Vous pouvez également mettre à jour votre interface utilisateur pour refléter la suppression, si nécessaire
+                
                 const iconToDelete = document.getElementById(workId);
             if (iconToDelete) {
                 iconToDelete.parentElement.remove();
@@ -87,11 +87,11 @@ function createWorks(work) {
                 workInHomePage.remove();
             }
             } else {
-                // Il y a eu un problème lors de la suppression du travail
+                
                 console.error(`Failed to delete work with ID ${workId}.`);
             }
         } catch (error) {
-            // Une erreur s'est produite lors de la requête
+            
             console.error('Error deleting work:', error);
         }
     }
@@ -137,16 +137,26 @@ async function displayCategoriesOptions() {
 }
 displayCategoriesOptions();
 
-//Filtrage au clique sur les boutons
+// Filtrage au clic sur les boutons
 
 async function filterCategories() {
     try {
         const allWorks = await getWorks();
         console.log(allWorks);
         const buttons = document.querySelectorAll(".filters button");
+
         buttons.forEach((button) => {
             button.addEventListener("click", async (e) => {
                 try {
+            
+                    buttons.forEach(btn => {
+                        btn.style.backgroundColor = "";
+                        btn.style.color = "";
+                    });
+
+                    e.target.style.backgroundColor = "#1D6154";
+                    e.target.style.color = "white";
+
                     const btnId = e.target.id;
                     console.log(`Clicked button with id: ${btnId}`);
                     gallery.innerHTML = "";
@@ -171,27 +181,32 @@ async function filterCategories() {
         console.error("Error during fetching works:", error);
     }
 }
+
 filterCategories();
 
 
+
 //Admin mode
+
 function adminMode() {
     const token = sessionStorage.getItem("token");
   
-    // Vérifier si le token existe
+    
     if (token) {
-        //retire les filtres
-      document.querySelector(".filters").style.display = "none";
-      //Login devient logout
-      document.getElementById("logBtn").innerText = "Logout";
-    // affichage modifier
+        
+    document.querySelector(".filters").style.display = "none";
+      
+    document.getElementById("logBtn").innerText = "Logout";
+    
     document.querySelector(".Div2").style.display = null;
+
     document.querySelector(".edition-mode").style.display = null;
     }
   }
   adminMode();
 
   //Sortir admin mode
+
   function exitAdminMode() {
     const token = sessionStorage.getItem("token"); 
     if(token) {
@@ -241,6 +256,7 @@ function addPictureForm() {
 }
 addPictureForm();
 
+// Ajout work
 
 const test = document.querySelector('#formAddPicture')
 
@@ -291,7 +307,7 @@ test.addEventListener('submit', (e) => {
 });
 
 
-
+// Verification input valider
     
 const addPictureInput = document.getElementById("addPicture");
 const titleInput = document.getElementById("title");
@@ -310,3 +326,5 @@ function checkInputs() {
         formSubmitButton.style.backgroundColor = "#1D6154";
     }
 }
+
+

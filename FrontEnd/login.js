@@ -25,14 +25,14 @@ fetch('http://localhost:5678/api/users/login', {
 .then(data => {
     if(data) {
     sessionStorage.setItem('token', data.token);
-    // Actions à effectuer en cas de succès (code 200)
+    
     console.log(data);
-    // Rediriger vers la page d'accueil
+    
     window.location.replace('index.html');
     }
 })
 .catch(error => {
-    // Actions à effectuer en cas d'erreur (code 400 ou 401)
+    
     console.error(error);
 });
 });
