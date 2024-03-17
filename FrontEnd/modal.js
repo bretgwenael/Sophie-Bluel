@@ -24,7 +24,9 @@ const closeModal = function (e) {
         element.removeEventListener('click', closeModal);
     });
     modal = null
-    window.location.reload("index.html");
+    gallery.innerHTML = "";
+    gallery2.innerHTML = "";
+    displayWorks();
 }
 
 function previousModal() {
@@ -50,7 +52,9 @@ function previousModal() {
 window.onclick = function(event) {
     if(event.target === modal) {
         modal.style.display = 'none';
-        window.location.reload("index.html");
+        gallery.innerHTML = "";
+        gallery2.innerHTML = "";
+        displayWorks();
     }
 }
 
